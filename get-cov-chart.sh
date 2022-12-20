@@ -1,4 +1,4 @@
-export dir_base=/PPgSi
+export dir_base=/PPgSI
 export dir_fonte=$dir_base/projects/Chart/1b
 export dir_jacoco=$dir_base/jacoco/org.jacoco.cli/target/org.jacoco.cli-0.8.9-SNAPSHOT-nodeps.jar
 export dir_jacoco_agent=$dir_base/jacoco/org.jacoco.agent.rt/target/org.jacoco.agent.rt-0.8.9-SNAPSHOT-all.jar
