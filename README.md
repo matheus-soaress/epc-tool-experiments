@@ -12,6 +12,10 @@ Na pasta dockerfile execute o seguinte comando para montar a imagem Docker usada
 
 Em seguida inicie o container Docker usando o comando:
 
-    *docker run -dp 3000:3000 epc-tool-experiments*
+    *docker container run -i --name epc-tool-container epc-tool-experiments*
 
+Para reiniciar o container parado use o comando:
+
+    *docker container start -i epc-tool-container*
+    
 https://docs.docker.com/get-started/02_our_app/

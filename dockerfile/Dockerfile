@@ -26,6 +26,15 @@ RUN git checkout 39c11023ffb3caa93f74fef3309e83bb3e1e202b && \
 
 WORKDIR /PPgSI
 
+# install JaCoCo
+RUN git clone https://github.com/jacoco/jacoco.git
+WORKDIR /PPgSI/jacoco
+RUN git checkout db899aee2347b16fd042e7e62dacac64eba98cae && \ 
+        mvn clean install
+
+WORKDIR /PPgSI
+
+# install epc-tool-experiments
 RUN git clone https://github.com/matheus-soaress/epc-tool-experiments.git
 WORKDIR /PPgSI/epc-tool-experiments
 RUN chmod +x *.sh
