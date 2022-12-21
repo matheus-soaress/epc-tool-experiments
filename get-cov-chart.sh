@@ -12,10 +12,8 @@ export classes_teste="org.jfree.chart.junit.JFreeChartTestSuite org.jfree.chart.
 export classpath="$dir_fonte/lib/servlet.jar:$dir_base/defects4j/framework/projects/lib/junit-4.11.jar"
 rm ./jacoco.exec
 rm ./coverage.ser
-rm -r $dir_destino_jacoco/build
-rm -r $dir_destino_jacoco/build-tests
-rm -r $dir_destino_epc_tool/build
-rm -r $dir_destino_epc_tool/build-tests
+rm -r $dir_destino_jacoco/*
+rm -r $dir_destino_epc_tool/*
 echo "Executando a ferramenta de cobertura JaCoCo"
 echo "Instrumentação da JaCoCo" > $dir_base/output-chart.txt
 { time java -jar $dir_jacoco instrument $dir_fonte/build --dest $dir_destino_jacoco/build; } 2>> $dir_base/output-chart.txt
@@ -39,8 +37,7 @@ echo "Geração do relatório ba-control-flow (node)" >> $dir_base/output-chart.
 { time java -jar $dir_epc_tool report -input ./coverage.ser -classes $dir_fonte -xml $dir_xml_epc_tool-node.xml; } 2>> $dir_base/output-chart.txt
 echo "XML ba-control-flow com relatorio gerado (node coverage)"
 rm ./coverage.ser
-rm -r $dir_destino_epc_tool/build
-rm -r $dir_destino_epc_tool/build-tests
+rm -r $dir_destino_epc_tool/*
 echo "Executando a ferramenta de cobertura ba-control-flow (edge coverage)"
 echo "Instrumentação da ba-control-flow (edge)" >> $dir_base/output-chart.txt
 { time java -jar $dir_epc_tool instrument -src $dir_fonte/build -dest $dir_destino_epc_tool/build -edges; } 2>> $dir_base/output-chart.txt
@@ -53,8 +50,7 @@ echo "Geração do relatório ba-control-flow (edge)" >> $dir_base/output-chart.
 { time java -jar $dir_epc_tool report -input ./coverage.ser -classes $dir_fonte -xml $dir_xml_epc_tool-edge.xml -edges; } 2>> $dir_base/output-chart.txt
 echo "XML ba-control-flow com relatorio gerado (edge coverage)"
 rm ./coverage.ser
-rm -r $dir_destino_epc_tool/build
-rm -r $dir_destino_epc_tool/build-tests
+rm -r $dir_destino_epc_tool/*
 echo "Executando a ferramenta de cobertura ba-control-flow (edge-pair coverage)"
 echo "Instrumentação da ba-control-flow (edge-pair)" >> $dir_base/output-chart.txt
 { time java -jar $dir_epc_tool instrument -src $dir_fonte/build -dest $dir_destino_epc_tool/build -edge-pairs; } 2>> $dir_base/output-chart.txt
@@ -66,3 +62,5 @@ echo "Classe instrumentada pela ba-control-flow executada (edge-pair coverage)"
 echo "Geração do relatório ba-control-flow (edge-pair)" >> $dir_base/output-chart.txt
 { time java -jar $dir_epc_tool report -input ./coverage.ser -classes $dir_fonte -xml $dir_xml_epc_tool-edge-pair.xml -edge-pairs; } 2>> $dir_base/output-chart.txt
 echo "XML ba-control-flow com relatorio gerado (edge-pair coverage)"
+rm ./jacoco.exec
+rm ./coverage.ser
