@@ -38,3 +38,7 @@ WORKDIR /PPgSI
 RUN git clone https://github.com/matheus-soaress/epc-tool-experiments.git
 WORKDIR /PPgSI/epc-tool-experiments
 RUN chmod +x *.sh
+
+WORKDIR /PPgSI
+RUN mkdir projects && \
+        mkdir reports
