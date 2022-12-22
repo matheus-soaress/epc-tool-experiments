@@ -17,8 +17,9 @@ rm -r $dir_destino_epc_tool/*
 echo "Executando a ferramenta de cobertura JaCoCo"
 java -jar $dir_jacoco instrument $dir_fonte --dest $dir_destino_jacoco
 echo "Instrumentacao da JaCoCo finalizada"
-java -cp "$dir_jacoco_agent;$classpath;$dir_destino_jacoco/classes;$dir_destino_jacoco/test" $classes_teste
+java -cp "$dir_jacoco_agent:$classpath:$dir_destino_jacoco/classes:$dir_destino_jacoco/test" $classes_teste
 echo "Classe instrumentada pela JaCoCo executada"
 java -jar $dir_jacoco report ./jacoco.exec --classfiles $dir_fonte --xml $dir_xml_jacoco
 echo "XML com relatorio da JaCoCo gerado"
-pause
+rm ./jacoco.exec
+rm ./coverage.ser
