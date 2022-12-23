@@ -5,6 +5,7 @@ RUN echo 'alias la="ls -lha"' >> ~/.bashrc
 RUN apt-get update && \
         apt-get install -y maven && \
         apt-get install -y build-essential && \
+        apt-get install -y time && \
     curl -L https://cpanmin.us | perl - App::cpanminus
 
 WORKDIR /PPgSI
