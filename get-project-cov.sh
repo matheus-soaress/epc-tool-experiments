@@ -1,19 +1,12 @@
 main()
 {
-    case $1 in 
-        "Csv")
-            testa_csv
-            ;;
-    esac
-}
-testa_csv() 
-{
+    rm /PPgSI/$1-*.txt
     for i in $(seq 0 10);
     do
-        time -o /PPgSI/chart-jacoco.txt --append -f "%E;" ./get-cov-csv.sh jacoco 
-        time -o /PPgSI/chart-node.txt --append -f "%E;" ./get-cov-csv.sh node
-        time -o /PPgSI/chart-edge.txt --append -f "%E;" ./get-cov-csv.sh edge
-        time -o /PPgSI/chart-edge-pair.txt --append -f "%E;" ./get-cov-csv.sh edge-pair
+        /usr/bin/time -o /PPgSI/$1-jacoco.txt --append -f "%E;" ./get-cov-$1.sh jacoco 
+        /usr/bin/time -o /PPgSI/$1-node.txt --append -f "%E;" ./get-cov-$1.sh node
+        /usr/bin/time -o /PPgSI/$1-edge.txt --append -f "%E;" ./get-cov-$1.sh edge
+        /usr/bin/time -o /PPgSI/$1-edge-pair.txt --append -f "%E;" ./get-cov-$1.sh edge-pair
     done
 }
-main
+main $1
