@@ -63,4 +63,4 @@ get_cobertura_pares_arestas()
     java -jar $dir_epc_tool report -input ./coverage.ser -classes $dir_fonte -xml $dir_xml_epc_tool-edge-pair.xml -edge-pairs
     rm ./coverage.ser
 }
-main
+main $1
