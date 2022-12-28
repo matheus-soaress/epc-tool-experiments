@@ -28,15 +28,15 @@ main()
 }
 checkout_projeto()
 {
-    for i in $(seq $versao_inicial $versao_final);
+    for i in $(seq $2 $3);
     do
-        defects4j checkout -p $projeto -v $i"b" -w /PPgSI/projects/$projeto/$i"b"
-        defects4j compile -w /PPgSI/projects/$projeto/$i"b"
+        defects4j checkout -p $1 -v $i"b" -w /PPgSI/projects/$1/$i"b"
+        defects4j compile -w /PPgSI/projects/$1/$i"b"
     done
 }
 get_cobertura()
 {
-    for j in $(seq $versao_inicial $versao_final);
+    for j in $(seq $2 $3);
     do
         for i in $(seq 1 10);
         do
