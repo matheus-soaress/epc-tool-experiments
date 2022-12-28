@@ -3,24 +3,24 @@ main()
     rm /PPgSI/$1-*.txt
     case $1 in
         "chart")
-            projeto = "Chart"
-            versao_inicial = 1
-            versao_final = 26
+            projeto="Chart"
+            versao_inicial=1
+            versao_final=26
             ;;
         "csv")
-            projeto = "Csv"
-            versao_inicial = 1
-            versao_final = 16
+            projeto="Csv"
+            versao_inicial=1
+            versao_final=16
             ;;
         "cli")
-            projeto = "Cli"
-            versao_inicial = 1
-            versao_final = 40
+            projeto="Cli"
+            versao_inicial=1
+            versao_final=40
             ;;
         "time")
-            projeto = "Time"
-            versao_inicial = 1
-            versao_final = 27
+            projeto="Time"
+            versao_inicial=1
+            versao_final=27
             ;;
     esac
     checkout_projeto $projeto $versao_inicial $versao_final
