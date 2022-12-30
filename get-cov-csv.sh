@@ -14,18 +14,19 @@ export classpath=$(defects4j export -p cp.test -w $dir_base"/projects/Csv/"$2"b"
 main() 
 {
     echo "Csv-"$2"b"
+    dir_fonte_classpath="\/PPgSI\/projects\/Csv\/"$2"b\/target"
     case $1 in
         "jacoco")
-            get_cobertura_jacoco
+            get_cobertura_jacoco $dir_fonte_classpath
             ;;
         "node")
-            get_cobertura_nos
+            get_cobertura_nos $dir_fonte_classpath
             ;;
         "edge")
-            get_cobertura_arestas
+            get_cobertura_arestas $dir_fonte_classpath
             ;;
         "edge-pair")
-            get_cobertura_pares_arestas
+            get_cobertura_pares_arestas $dir_fonte_classpath
             ;;
     esac
 }
@@ -34,8 +35,9 @@ get_cobertura_jacoco()
     rm ./jacoco.exec
     rm -r $dir_destino_jacoco/*
     java -jar $dir_jacoco instrument $dir_fonte --dest $dir_destino_jacoco
-    classpath=$(sed 's/"/PPgSI/projects/Csv/3b/target"/"$dir_destino_jacoco"/g $classpath')
-    echo "$dir_jacoco_agent:$classpath"
+    dir_destino_jacoco_cp="\/PPgSI\/out-jacoco"
+    classpath2=$(echo $classpath | sed 's,$1,$dir_destino_jacoco_cp,g')
+    echo "$dir_jacoco_agent:$classpath2"
     java -cp "$dir_jacoco_agent:$classpath" $classes_teste
     java -jar $dir_jacoco report ./jacoco.exec --classfiles $dir_fonte --xml $dir_xml_jacoco
     rm ./jacoco.exec
