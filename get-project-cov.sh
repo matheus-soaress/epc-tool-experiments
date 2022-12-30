@@ -3,36 +3,30 @@ main()
     rm /PPgSI/$1-*.txt
     case $1 in
         "chart")
-            projeto="Chart"
             versao_inicial=1
             versao_final=26
+            projeto=Chart
+            dir_fonte=""
             ;;
         "csv")
-            projeto="Csv"
             versao_inicial=1
             versao_final=16
+            projeto=Csv
+            dir_fonte="target"
             ;;
         "cli")
-            projeto="Cli"
             versao_inicial=1
             versao_final=40
+            projeto=Cli
             ;;
         "time")
-            projeto="Time"
             versao_inicial=1
             versao_final=27
+            projeto=Time
             ;;
     esac
-    checkout_projeto $projeto $versao_inicial $versao_final
-    get_cobertura $1 $versao_inicial $versao_final
-}
-checkout_projeto()
-{
-    for i in $(seq $2 $3);
-    do
-        defects4j checkout -p $1 -v $i"b" -w /PPgSI/projects/$1/$i"b"
-        defects4j compile -w /PPgSI/projects/$1/$i"b"
-    done
+    
+    get_cobertura $1 $versao_inicial $versao_final $projeto
 }
 get_cobertura()
 {
@@ -44,10 +38,10 @@ get_cobertura()
         echo "\nexecucao versao "$j"b;" >> /PPgSI/$1-edge-pair.txt
         for i in $(seq 1 10);
         do
-            /usr/bin/time -o /PPgSI/$1-jacoco.txt --append -f "%E;" ./get-cov-$1.sh jacoco $j
-            /usr/bin/time -o /PPgSI/$1-node.txt --append -f "%E;" ./get-cov-$1.sh node $j
-            /usr/bin/time -o /PPgSI/$1-edge.txt --append -f "%E;" ./get-cov-$1.sh edge $j
-            /usr/bin/time -o /PPgSI/$1-edge-pair.txt --append -f "%E;" ./get-cov-$1.sh edge-pair $j
+            /usr/bin/time -o /PPgSI/$1-jacoco.txt --append -f "%E;" ./get-project-version-cov.sh $4 jacoco $j
+            /usr/bin/time -o /PPgSI/$1-node.txt --append -f "%E;" ./get-project-version-cov.sh $4 node $j
+            /usr/bin/time -o /PPgSI/$1-edge.txt --append -f "%E;" ./get-project-version-cov.sh $4 edge $j
+            /usr/bin/time -o /PPgSI/$1-edge-pair.txt --append -f "%E;" ./get-project-version-cov.sh $4 edge-pair $j
         done
     done
 }

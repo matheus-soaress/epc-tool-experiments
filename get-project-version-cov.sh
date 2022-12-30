@@ -1,21 +1,19 @@
 export dir_base=/PPgSI
-export dir_fonte=$dir_base"/projects/Csv/"$2"b/target"
 export dir_jacoco=$dir_base/jacoco/org.jacoco.cli/target/org.jacoco.cli-0.8.9-SNAPSHOT-nodeps.jar
 export dir_jacoco_agent=$dir_base/jacoco/org.jacoco.agent.rt/target/org.jacoco.agent.rt-0.8.9-SNAPSHOT-all.jar
 export dir_destino_jacoco=$dir_base/out-jacoco
-export dir_xml_jacoco=$dir_base/reports/report-csv-jacoco.xml
-export dir_lib_csv=$dir_base/defects4j/framework/projects/Csv/lib
+export dir_xml_jacoco=$dir_base"/reports/"$1"-jacoco.xml"
 export dir_epc_tool=$dir_base/edge-pair-cov-tool/epc-tool-cli/target/epc-tool-cli-0.0.1-SNAPSHOT-all.jar
 export dir_destino_epc_tool=$dir_base/out-epc-tool
-export dir_xml_epc_tool=$dir_base/reports/report-csv
-# export classes_teste="org.junit.runner.JUnitCore org.apache.commons.csv.CSVFormatTest org.apache.commons.csv.CSVLexerTest org.apache.commons.csv.CSVParserTest org.apache.commons.csv.CSVPrinterTest org.apache.commons.csv.ExtendedBufferedReaderTest"
-export classes_teste=$(defects4j export -p tests.all -w $dir_base"/projects/Csv/"$2"b")
-export classpath=$(defects4j export -p cp.test -w $dir_base"/projects/Csv/"$2"b")
+export dir_xml_epc_tool=$dir_base"/reports/"$1
+export classes_teste=$(defects4j export -p tests.all -w $dir_base"/projects/"$1"/"$3"b")
+export classpath=$(defects4j export -p cp.test -w $dir_base"/projects/"$1"/"$3"b")
+export dir_fonte=$dir_base"/projects/"$1"/"$3"b/"$4
+export dir_fonte_classpath="\/PPgSI\/projects\/"$1"\/"$3"b\/"$4
 main() 
 {
-    echo "Csv-"$2"b"
-    dir_fonte_classpath="\/PPgSI\/projects\/Csv\/"$2"b\/target"
-    case $1 in
+    echo $1"-"$3"b"
+    case $2 in
         "jacoco")
             get_cobertura_jacoco $dir_fonte_classpath
             ;;
@@ -36,11 +34,8 @@ get_cobertura_jacoco()
     rm -r $dir_destino_jacoco/*
     java -jar $dir_jacoco instrument $dir_fonte --dest $dir_destino_jacoco
     dir_destino_jacoco_cp="\/PPgSI\/out-jacoco"
-    classpath2=$(echo $classpath | sed "s,$1,$dir_destino_jacoco_cp,g")
-    echo "$dir_jacoco_agent:$classpath2"
-    echo "$classes_teste"
-    java -cp "$dir_jacoco_agent:$classpath2" $classes_teste
-    echo java -cp "$dir_jacoco_agent:$classpath2" $classes_teste
+    classpath_jacoco=$(echo $classpath | sed "s,$1,$dir_destino_jacoco_cp,g")
+    java -cp "$dir_jacoco_agent:$classpath_jacoco" $classes_teste
     java -jar $dir_jacoco report ./jacoco.exec --classfiles $dir_fonte --xml $dir_xml_jacoco
     rm ./jacoco.exec
 }
@@ -49,7 +44,9 @@ get_cobertura_nos()
     rm ./coverage.ser
     rm -r $dir_destino_epc_tool/*
     java -jar $dir_epc_tool instrument -src $dir_fonte -dest $dir_destino_epc_tool
-    java -cp "$dir_epc_tool:$dir_destino_epc_tool/classes:$dir_destino_epc_tool/test-classes:$classpath" $classes_teste
+    dir_destino_epc_tool_cp="\/PPgSI\/out-epc-tool"
+    classpath_epc_tool=$(echo $classpath | sed "s,$1,$dir_destino_epc_tool_cp,g")
+    java -cp "$dir_epc_tool:$classpath_epc_tool" $classes_teste
     java -jar $dir_epc_tool report -input ./coverage.ser -classes $dir_fonte -xml $dir_xml_epc_tool-node.xml
     rm ./coverage.ser
 }
@@ -58,7 +55,9 @@ get_cobertura_arestas()
     rm ./coverage.ser
     rm -r $dir_destino_epc_tool/*
     java -jar $dir_epc_tool instrument -src $dir_fonte -dest $dir_destino_epc_tool -edges
-    java -cp "$dir_epc_tool:$dir_destino_epc_tool/classes:$dir_destino_epc_tool/test-classes:$classpath" $classes_teste
+    dir_destino_epc_tool_cp="\/PPgSI\/out-epc-tool"
+    classpath_epc_tool=$(echo $classpath | sed "s,$1,$dir_destino_epc_tool_cp,g")
+    java -cp "$dir_epc_tool:$classpath_epc_tool" $classes_teste
     java -jar $dir_epc_tool report -input ./coverage.ser -classes $dir_fonte -xml $dir_xml_epc_tool-edge.xml -edges
     rm ./coverage.ser
 }
@@ -67,8 +66,10 @@ get_cobertura_pares_arestas()
     rm ./coverage.ser
     rm -r $dir_destino_epc_tool/*
     java -jar $dir_epc_tool instrument -src $dir_fonte -dest $dir_destino_epc_tool -edge-pairs
-    java -cp "$dir_epc_tool:$dir_destino_epc_tool/classes:$dir_destino_epc_tool/test-classes:$classpath" $classes_teste
+    dir_destino_epc_tool_cp="\/PPgSI\/out-epc-tool"
+    classpath_epc_tool=$(echo $classpath | sed "s,$1,$dir_destino_epc_tool_cp,g")
+    java -cp "$dir_epc_tool:$classpath_epc_tool" $classes_teste
     java -jar $dir_epc_tool report -input ./coverage.ser -classes $dir_fonte -xml $dir_xml_epc_tool-edge-pair.xml -edge-pairs
     rm ./coverage.ser
 }
-main $1 $2
+main $1 $2 $3
