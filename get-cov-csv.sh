@@ -36,9 +36,11 @@ get_cobertura_jacoco()
     rm -r $dir_destino_jacoco/*
     java -jar $dir_jacoco instrument $dir_fonte --dest $dir_destino_jacoco
     dir_destino_jacoco_cp="\/PPgSI\/out-jacoco"
-    classpath2=$(echo $classpath | sed 's,$1,$dir_destino_jacoco_cp,g')
+    classpath2=$(echo $classpath | sed "s,$1,$dir_destino_jacoco_cp,g")
     echo "$dir_jacoco_agent:$classpath2"
-    java -cp "$dir_jacoco_agent:$classpath" $classes_teste
+    echo "$classes_teste"
+    java -cp "$dir_jacoco_agent:$classpath2" $classes_teste
+    echo java -cp "$dir_jacoco_agent:$classpath2" $classes_teste
     java -jar $dir_jacoco report ./jacoco.exec --classfiles $dir_fonte --xml $dir_xml_jacoco
     rm ./jacoco.exec
 }
