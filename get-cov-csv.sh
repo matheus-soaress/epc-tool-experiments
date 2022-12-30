@@ -34,7 +34,9 @@ get_cobertura_jacoco()
     rm ./jacoco.exec
     rm -r $dir_destino_jacoco/*
     java -jar $dir_jacoco instrument $dir_fonte --dest $dir_destino_jacoco
-    java -cp "$dir_jacoco_agent:$dir_destino_jacoco/classes:$dir_destino_jacoco/test-classes:$classpath" $classes_teste
+    classpath=$(sed 's/"/PPgSI/projects/Csv/3b/target"/"$dir_destino_jacoco"/g $classpath')
+    echo "$dir_jacoco_agent:$classpath"
+    java -cp "$dir_jacoco_agent:$classpath" $classes_teste
     java -jar $dir_jacoco report ./jacoco.exec --classfiles $dir_fonte --xml $dir_xml_jacoco
     rm ./jacoco.exec
 }
