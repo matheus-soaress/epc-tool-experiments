@@ -1,5 +1,5 @@
 export dir_base=/PPgSI
-export dir_fonte=$dir_base/projects/Csv/1b/target
+export dir_fonte=$dir_base"/projects/Csv/"$2"b/target"
 export dir_jacoco=$dir_base/jacoco/org.jacoco.cli/target/org.jacoco.cli-0.8.9-SNAPSHOT-nodeps.jar
 export dir_jacoco_agent=$dir_base/jacoco/org.jacoco.agent.rt/target/org.jacoco.agent.rt-0.8.9-SNAPSHOT-all.jar
 export dir_destino_jacoco=$dir_base/out-jacoco
@@ -63,4 +63,4 @@ get_cobertura_pares_arestas()
     java -jar $dir_epc_tool report -input ./coverage.ser -classes $dir_fonte -xml $dir_xml_epc_tool-edge-pair.xml -edge-pairs
     rm ./coverage.ser
 }
-main $1
+main $1 $2
