@@ -38,15 +38,15 @@ get_cobertura()
 {
     for j in $(seq $2 $3);
     do
+        echo "\nexecucao versao "$j"b;" >> /PPgSI/$1-jacoco.txt
+        echo "\nexecucao versao "$j"b;" >> /PPgSI/$1-node.txt
+        echo "\nexecucao versao "$j"b;" >> /PPgSI/$1-edge.txt
+        echo "\nexecucao versao "$j"b;" >> /PPgSI/$1-edge-pair.txt
         for i in $(seq 1 10);
         do
-            echo "\nexecucao $i - versao $j b" >> /PPgSI/$1-jacoco.txt
             /usr/bin/time -o /PPgSI/$1-jacoco.txt --append -f "%E;" ./get-cov-$1.sh jacoco $j
-            echo "\nexecucao $i - versao $j b" >> /PPgSI/$1-node.txt
             /usr/bin/time -o /PPgSI/$1-node.txt --append -f "%E;" ./get-cov-$1.sh node $j
-            echo "\nexecucao $i - versao $j b" >> /PPgSI/$1-edge.txt
             /usr/bin/time -o /PPgSI/$1-edge.txt --append -f "%E;" ./get-cov-$1.sh edge $j
-            echo "\nexecucao $i - versao $j b" >> /PPgSI/$1-edge-pair.txt
             /usr/bin/time -o /PPgSI/$1-edge-pair.txt --append -f "%E;" ./get-cov-$1.sh edge-pair $j
         done
     done
