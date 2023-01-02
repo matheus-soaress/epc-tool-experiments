@@ -125,10 +125,10 @@ get_cobertura()
                 /usr/bin/time -o /PPgSI/$1-edge-temp.txt --append -f "%E;" ./get-project-version-cov.sh $4 edge $j
                 /usr/bin/time -o /PPgSI/$1-edge-pair-temp.txt --append -f "%E;" ./get-project-version-cov.sh $4 edge-pair $j
             done
-            tr -d '/n' < /PPgSI/$1-jacoco-temp.txt >> /PPgSI/$1-jacoco.txt
-            tr -d '/n' < /PPgSI/$1-node-temp.txt >> /PPgSI/$1-node.txt
-            tr -d '/n' < /PPgSI/$1-edge-temp.txt >> /PPgSI/$1-edge.txt
-            tr -d '/n' < /PPgSI/$1-edge-pair-temp.txt >> /PPgSI/$1-edge-pair.txt
+            tr -d '\n' < /PPgSI/$1-jacoco-temp.txt >> /PPgSI/$1-jacoco.txt
+            tr -d '\n' < /PPgSI/$1-node-temp.txt >> /PPgSI/$1-node.txt
+            tr -d '\n' < /PPgSI/$1-edge-temp.txt >> /PPgSI/$1-edge.txt
+            tr -d '\n' < /PPgSI/$1-edge-pair-temp.txt >> /PPgSI/$1-edge-pair.txt
         fi
     done
 }
