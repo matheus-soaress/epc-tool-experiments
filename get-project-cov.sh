@@ -8,21 +8,101 @@ main()
             projeto=Chart
             dir_fonte=""
             ;;
-        "csv")
-            versao_inicial=1
-            versao_final=16
-            projeto=Csv
-            dir_fonte="target"
-            ;;
         "cli")
             versao_inicial=1
             versao_final=40
             projeto=Cli
+            dir_fonte="target"
+            ;;
+        "closure")
+            projeto="Closure"
+            versao_inicial=1
+            versao_final=176
+            dir_fonte="build"
+            ;;
+        "codec")
+            projeto="Codec"
+            versao_inicial=1
+            versao_final=18
+            dir_fonte="target"
+            ;;
+        "collections")
+            projeto="Collections"
+            versao_inicial=25
+            versao_final=28
+            dir_fonte="target"
+            ;;
+        "compress")
+            projeto="Compress"
+            versao_inicial=1
+            versao_final=47
+            dir_fonte="target"
+            ;;
+        "csv")
+            projeto="Csv"
+            versao_inicial=1
+            versao_final=16
+            dir_fonte="target"
+            ;;
+        "gson")
+            projeto="Gson"
+            versao_inicial=1
+            versao_final=18
+            dir_fonte="target"
+            ;;
+        "jackson-core")
+            projeto="JacksonCore"
+            versao_inicial=1
+            versao_final=26
+            dir_fonte="target"
+            ;;
+        "jackson-databind")
+            projeto="JacksonDatabind"
+            versao_inicial=1
+            versao_final=112
+            dir_fonte="target"
+            ;;
+        "jackson-xml")
+            projeto="JacksonXml"
+            versao_inicial=1
+            versao_final=6
+            dir_fonte="target"
+            ;;
+        "jsoup")
+            projeto="Jsoup"
+            versao_inicial=1
+            versao_final=93
+            dir_fonte="target"
+            ;;
+        "jxPath")
+            projeto="JxPath"
+            versao_inicial=1
+            versao_final=22
+            dir_fonte="target"
+            ;;
+        "lang")
+            projeto="Lang"
+            versao_inicial=1
+            versao_final=65
+            dir_fonte="target"
+            ;;
+        "math")
+            projeto="Math"
+            versao_inicial=1
+            versao_final=106
+            dir_fonte="target"
+            ;;
+        "mockito")
+            projeto="Mockito"
+            versao_inicial=1
+            versao_final=38
+            dir_fonte="build"
             ;;
         "time")
             versao_inicial=1
             versao_final=27
             projeto=Time
+            dir_fonte="target"
             ;;
     esac
     
