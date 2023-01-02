@@ -92,10 +92,8 @@ checkout_projeto()
 {
     for i in $(seq $2 $3);
     do
-        if [ $1 = "lang" ] && [ $i -eq 2]
-        then 
-            # Nao faz nada
-        else
+        if [ $1 != "lang" ] || [ $i -ne 2]
+          then 
             defects4j checkout -p $1 -v $i"b" -w /PPgSI/projects/$1/$i"b"
             defects4j compile -w /PPgSI/projects/$1/$i"b"
             defects4j test -w /PPgSI/projects/$1/$i"b"
