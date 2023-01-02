@@ -114,17 +114,21 @@ get_cobertura()
     do
         if [ $1 != "lang" ] || [ $j -ne 2 ]
         then 
-            echo "\nexecucao versao "$j"b;" >> /PPgSI/$1-jacoco.txt
-            echo "\nexecucao versao "$j"b;" >> /PPgSI/$1-node.txt
-            echo "\nexecucao versao "$j"b;" >> /PPgSI/$1-edge.txt
-            echo "\nexecucao versao "$j"b;" >> /PPgSI/$1-edge-pair.txt
+            echo "\nexecucao versao "$j"b;" > /PPgSI/$1-jacoco-temp.txt
+            echo "\nexecucao versao "$j"b;" > /PPgSI/$1-node-temp.txt
+            echo "\nexecucao versao "$j"b;" > /PPgSI/$1-edge-temp.txt
+            echo "\nexecucao versao "$j"b;" > /PPgSI/$1-edge-pair-temp.txt
             for i in $(seq 1 10);
             do
-                /usr/bin/time -o /PPgSI/$1-jacoco.txt --append -f "%E;" ./get-project-version-cov.sh $4 jacoco $j
-                /usr/bin/time -o /PPgSI/$1-node.txt --append -f "%E;" ./get-project-version-cov.sh $4 node $j
-                /usr/bin/time -o /PPgSI/$1-edge.txt --append -f "%E;" ./get-project-version-cov.sh $4 edge $j
-                /usr/bin/time -o /PPgSI/$1-edge-pair.txt --append -f "%E;" ./get-project-version-cov.sh $4 edge-pair $j
+                /usr/bin/time -o /PPgSI/$1-jacoco-temp.txt --append -f "%E;" ./get-project-version-cov.sh $4 jacoco $j
+                /usr/bin/time -o /PPgSI/$1-node-temp.txt --append -f "%E;" ./get-project-version-cov.sh $4 node $j
+                /usr/bin/time -o /PPgSI/$1-edge-temp.txt --append -f "%E;" ./get-project-version-cov.sh $4 edge $j
+                /usr/bin/time -o /PPgSI/$1-edge-pair-temp.txt --append -f "%E;" ./get-project-version-cov.sh $4 edge-pair $j
             done
+            tr -d '/n' < /PPgSI/$1-jacoco-temp.txt >> /PPgSI/$1-jacoco.txt
+            tr -d '/n' < /PPgSI/$1-node-temp.txt >> /PPgSI/$1-node.txt
+            tr -d '/n' < /PPgSI/$1-edge-temp.txt >> /PPgSI/$1-edge.txt
+            tr -d '/n' < /PPgSI/$1-edge-pair-temp.txt >> /PPgSI/$1-edge-pair.txt
         fi
     done
 }
