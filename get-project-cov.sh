@@ -129,6 +129,10 @@ get_cobertura()
             tr -d '\n' < /PPgSI/$1-node-temp.txt >> /PPgSI/$1-node.txt
             tr -d '\n' < /PPgSI/$1-edge-temp.txt >> /PPgSI/$1-edge.txt
             tr -d '\n' < /PPgSI/$1-edge-pair-temp.txt >> /PPgSI/$1-edge-pair.txt
+            echo "\n" >> /PPgSI/$1-jacoco.txt
+            echo "\n" >> /PPgSI/$1-node.txt
+            echo "\n" >> /PPgSI/$1-edge.txt
+            echo "\n" >> /PPgSI/$1-edge-pair.txt
         fi
     done
 }
