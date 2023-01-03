@@ -30,7 +30,7 @@ WORKDIR /PPgSI
 # install JaCoCo
 RUN git clone https://github.com/jacoco/jacoco.git
 WORKDIR /PPgSI/jacoco
-RUN git checkout tags\v0.8.8 && \ 
+RUN git checkout tags/v0.8.8 && \ 
         mvn clean install
 
 WORKDIR /PPgSI
