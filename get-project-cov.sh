@@ -112,7 +112,7 @@ get_cobertura()
 {
     for j in $(seq $2 $3);
     do
-        if [ $1 != "lang" ] || [ $j -ne 2 ]
+        if ( [ $1 != "lang" ] || [ $j -ne 2 ] ) && ( [ $1 != "cli" ] || [ $j -ne 6 ] ) && ( [ $1 != "closure" ] || ( [ $j -ne 63 ] || [ $j -ne 93 ] ) && ( [ $1 != "time" ] || [ $j -ne 21 ] ) )
         then 
             echo "\nexecucao versao "$j"b;" > /PPgSI/$1-jacoco-temp.txt
             echo "\nexecucao versao "$j"b;" > /PPgSI/$1-node-temp.txt
