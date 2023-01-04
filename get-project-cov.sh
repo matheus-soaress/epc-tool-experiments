@@ -135,5 +135,6 @@ get_cobertura()
             echo "" >> /PPgSI/$1-edge-pair.txt
         fi
     done
+    rm /PPgSI/$1-*-temp.txt
 }
 main $1
