@@ -35,7 +35,7 @@ get_cobertura_jacoco()
     java -jar $dir_jacoco instrument $dir_fonte --dest $dir_destino_jacoco
     dir_destino_jacoco_cp="\/PPgSI\/out-jacoco"
     classpath_jacoco=$(echo $classpath | sed "s,$1,$dir_destino_jacoco_cp,g")
-    java -cp "$dir_jacoco_agent:$classpath_jacoco" $classes_teste
+    java -cp "$dir_jacoco_agent:$classpath_jacoco" org.junit.runner.JUnitCore $classes_teste
     java -jar $dir_jacoco report ./jacoco.exec --classfiles $dir_fonte --xml $dir_xml_jacoco
     rm ./jacoco.exec
 }
@@ -46,7 +46,7 @@ get_cobertura_nos()
     java -jar $dir_epc_tool instrument -src $dir_fonte -dest $dir_destino_epc_tool
     dir_destino_epc_tool_cp="\/PPgSI\/out-epc-tool"
     classpath_epc_tool=$(echo $classpath | sed "s,$1,$dir_destino_epc_tool_cp,g")
-    java -cp "$dir_epc_tool:$classpath_epc_tool" $classes_teste
+    java -cp "$dir_epc_tool:$classpath_epc_tool" org.junit.runner.JUnitCore $classes_teste
     java -jar $dir_epc_tool report -input ./coverage.ser -classes $dir_fonte -xml $dir_xml_epc_tool-node.xml
     rm ./coverage.ser
 }
@@ -57,7 +57,7 @@ get_cobertura_arestas()
     java -jar $dir_epc_tool instrument -src $dir_fonte -dest $dir_destino_epc_tool -edges
     dir_destino_epc_tool_cp="\/PPgSI\/out-epc-tool"
     classpath_epc_tool=$(echo $classpath | sed "s,$1,$dir_destino_epc_tool_cp,g")
-    java -cp "$dir_epc_tool:$classpath_epc_tool" $classes_teste
+    java -cp "$dir_epc_tool:$classpath_epc_tool" org.junit.runner.JUnitCore $classes_teste
     java -jar $dir_epc_tool report -input ./coverage.ser -classes $dir_fonte -xml $dir_xml_epc_tool-edge.xml -edges
     rm ./coverage.ser
 }
@@ -68,7 +68,7 @@ get_cobertura_pares_arestas()
     java -jar $dir_epc_tool instrument -src $dir_fonte -dest $dir_destino_epc_tool -edge-pairs
     dir_destino_epc_tool_cp="\/PPgSI\/out-epc-tool"
     classpath_epc_tool=$(echo $classpath | sed "s,$1,$dir_destino_epc_tool_cp,g")
-    java -cp "$dir_epc_tool:$classpath_epc_tool" $classes_teste
+    java -cp "$dir_epc_tool:$classpath_epc_tool" org.junit.runner.JUnitCore $classes_teste
     java -jar $dir_epc_tool report -input ./coverage.ser -classes $dir_fonte -xml $dir_xml_epc_tool-edge-pair.xml -edge-pairs
     rm ./coverage.ser
 }
