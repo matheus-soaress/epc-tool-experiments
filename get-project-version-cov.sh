@@ -33,7 +33,7 @@ get_cobertura_jacoco()
     rm ./jacoco.exec
     rm -r $dir_destino_jacoco/*
     java -jar $dir_jacoco instrument $dir_fonte --dest $dir_destino_jacoco
-    dir_destino_jacoco_cp="\/PPgSI\/out-jacoco"
+    dir_destino_jacoco_cp="\/PPgSI\/out-jacoco\/"
     classpath_jacoco=$(echo $classpath | sed "s,$1,$dir_destino_jacoco_cp,g")
     java -cp "$dir_jacoco_agent:$classpath_jacoco" org.junit.runner.JUnitCore $classes_teste
     java -jar $dir_jacoco report ./jacoco.exec --classfiles $dir_fonte --xml $dir_xml_jacoco
@@ -44,7 +44,7 @@ get_cobertura_nos()
     rm ./coverage.ser
     rm -r $dir_destino_epc_tool/*
     java -jar $dir_epc_tool instrument -src $dir_fonte -dest $dir_destino_epc_tool
-    dir_destino_epc_tool_cp="\/PPgSI\/out-epc-tool"
+    dir_destino_epc_tool_cp="\/PPgSI\/out-epc-tool\/"
     classpath_epc_tool=$(echo $classpath | sed "s,$1,$dir_destino_epc_tool_cp,g")
     java -cp "$dir_epc_tool:$classpath_epc_tool" org.junit.runner.JUnitCore $classes_teste
     java -jar $dir_epc_tool report -input ./coverage.ser -classes $dir_fonte -xml $dir_xml_epc_tool-node.xml
@@ -55,7 +55,7 @@ get_cobertura_arestas()
     rm ./coverage.ser
     rm -r $dir_destino_epc_tool/*
     java -jar $dir_epc_tool instrument -src $dir_fonte -dest $dir_destino_epc_tool -edges
-    dir_destino_epc_tool_cp="\/PPgSI\/out-epc-tool"
+    dir_destino_epc_tool_cp="\/PPgSI\/out-epc-tool\/"
     classpath_epc_tool=$(echo $classpath | sed "s,$1,$dir_destino_epc_tool_cp,g")
     java -cp "$dir_epc_tool:$classpath_epc_tool" org.junit.runner.JUnitCore $classes_teste
     java -jar $dir_epc_tool report -input ./coverage.ser -classes $dir_fonte -xml $dir_xml_epc_tool-edge.xml -edges
@@ -66,7 +66,7 @@ get_cobertura_pares_arestas()
     rm ./coverage.ser
     rm -r $dir_destino_epc_tool/*
     java -jar $dir_epc_tool instrument -src $dir_fonte -dest $dir_destino_epc_tool -edge-pairs
-    dir_destino_epc_tool_cp="\/PPgSI\/out-epc-tool"
+    dir_destino_epc_tool_cp="\/PPgSI\/out-epc-tool\/"
     classpath_epc_tool=$(echo $classpath | sed "s,$1,$dir_destino_epc_tool_cp,g")
     java -cp "$dir_epc_tool:$classpath_epc_tool" org.junit.runner.JUnitCore $classes_teste
     java -jar $dir_epc_tool report -input ./coverage.ser -classes $dir_fonte -xml $dir_xml_epc_tool-edge-pair.xml -edge-pairs
