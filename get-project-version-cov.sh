@@ -14,7 +14,7 @@ main()
 {
     echo $1"-"$3"b"
     if
-        [ $1 = "time" ]
+        [ $1 = "Time" ]
         then
             classe_junit="junit.textui.TestRunner"
         else
