@@ -19,3 +19,9 @@ Para reiniciar o container parado use o comando:
     *docker container start -i epc-tool-container*
     
 https://docs.docker.com/get-started/02_our_app/
+
+### Problemas atuais
+
+BA-control-flow quando instrumenta o Math, gera erro.
+
+Cli nas versões iniciais usa o JUnit 3 e nas últimas usa o JUnit 4.
