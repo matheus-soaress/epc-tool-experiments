@@ -24,4 +24,4 @@ https://docs.docker.com/get-started/02_our_app/
 
 BA-control-flow quando instrumenta o Math, gera erro.
 
-Cli nas versões iniciais usa o JUnit 3 e nas últimas usa o JUnit 4.
+Cli e Compress nas versões iniciais usa o JUnit 3 e nas últimas usa o JUnit 4.
