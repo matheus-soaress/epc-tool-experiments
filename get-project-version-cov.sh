@@ -13,7 +13,7 @@ export dir_fonte_classpath="\/PPgSI\/projects\/"$1"\/"$3"b\/"$4
 main() 
 {
     echo $1"-"$3"b"
-    if [ "$classpath" == *"junit-3"* ]
+    if [[ "$classpath" == *"junit-3"* ]]
         then
             classe_junit="junit.textui.TestRunner"
         else
