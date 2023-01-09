@@ -7,18 +7,20 @@ export dir_epc_tool=$dir_base/edge-pair-cov-tool/epc-tool-cli/target/epc-tool-cl
 export dir_destino_epc_tool=$dir_base/out-epc-tool
 export dir_xml_epc_tool=$dir_base"/reports/"$1
 export classes_teste="$(defects4j export -p tests.all -w $dir_base"/projects/"$1"/"$3"b" | tr '\n' ' ')"
-export classpath=$(defects4j export -p cp.test -w $dir_base"/projects/"$1"/"$3"b")
+export classpath="$(defects4j export -p cp.test -w $dir_base"/projects/"$1"/"$3"b")"
 export dir_fonte=$dir_base"/projects/"$1"/"$3"b/"$4
 export dir_fonte_classpath="\/PPgSI\/projects\/"$1"\/"$3"b\/"$4
 main() 
 {
     echo $1"-"$3"b"
-    if [[ "$classpath" == *"junit-3"* ]]
-        then
+    case $classpath in
+        *"junit-3"*)
             classe_junit="junit.textui.TestRunner"
-        else
+            ;;
+        *"junit-4"*)
             classe_junit="org.junit.runner.JUnitCore"
-    fi
+            ;;
+    esac
     case $2 in
         "jacoco")
             get_cobertura_jacoco $dir_fonte_classpath $classe_junit
