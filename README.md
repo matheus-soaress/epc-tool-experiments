@@ -4,7 +4,7 @@ Esse repositório contém os scripts utilizados para testar a ferramenta de cobe
 
 ---
 
-### Executando script de teste
+## Executando script de teste
 
 Na pasta dockerfile execute o seguinte comando para montar a imagem Docker usada para rodar os testes:
 
@@ -20,8 +20,10 @@ Para reiniciar o container parado use o comando:
     
 https://docs.docker.com/get-started/02_our_app/
 
-### Problemas atuais
+## Problemas atuais
 
 BA-control-flow quando instrumenta o Math, gera erro.
 
-Cli e Compress nas versões iniciais usa o JUnit 3 e nas últimas usa o JUnit 4.
+~~Cli e Compress nas versões iniciais usa o JUnit 3 e nas últimas usa o JUnit 4.~~ [CORRIGIDO]
+
+Instrumentação da JaCoCo gera erro na execução do Compress.
