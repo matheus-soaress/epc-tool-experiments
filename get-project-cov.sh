@@ -1,6 +1,7 @@
+export dir_base_perf=/PPgSI/perf-reports/
 main()
 {
-    rm /PPgSI/$1-*.txt
+    rm $dir_base_perf$1-*.txt
     case $1 in
         "chart")
             versao_inicial=1
@@ -114,27 +115,27 @@ get_cobertura()
     do
         if ( [ $1 != "lang" ] || [ $j -ne 2 ] ) && ( [ $1 != "cli" ] || [ $j -ne 6 ] ) && ( [ $1 != "closure" ] || ( [ $j -ne 63 ] || [ $j -ne 93 ] ) && ( [ $1 != "time" ] || [ $j -ne 21 ] ) )
         then 
-            echo "\nexecucao versao "$j"b;" > /PPgSI/$1-jacoco-temp.txt
-            echo "\nexecucao versao "$j"b;" > /PPgSI/$1-node-temp.txt
-            echo "\nexecucao versao "$j"b;" > /PPgSI/$1-edge-temp.txt
-            echo "\nexecucao versao "$j"b;" > /PPgSI/$1-edge-pair-temp.txt
+            echo "\nexecucao versao "$j"b;" > $dir_base_perf$1-jacoco-temp.txt
+            echo "\nexecucao versao "$j"b;" > $dir_base_perf$1-node-temp.txt
+            echo "\nexecucao versao "$j"b;" > $dir_base_perf$1-edge-temp.txt
+            echo "\nexecucao versao "$j"b;" > $dir_base_perf$1-edge-pair-temp.txt
             for i in $(seq 1 10);
             do
-                /usr/bin/time -o /PPgSI/$1-jacoco-temp.txt --append -f "%E;" ./get-project-version-cov.sh $4 jacoco $j
-                /usr/bin/time -o /PPgSI/$1-node-temp.txt --append -f "%E;" ./get-project-version-cov.sh $4 node $j
-                /usr/bin/time -o /PPgSI/$1-edge-temp.txt --append -f "%E;" ./get-project-version-cov.sh $4 edge $j
-                /usr/bin/time -o /PPgSI/$1-edge-pair-temp.txt --append -f "%E;" ./get-project-version-cov.sh $4 edge-pair $j
+                /usr/bin/time -o $dir_base_perf$1-jacoco-temp.txt --append -f "%E;" ./get-project-version-cov.sh $4 jacoco $j
+                /usr/bin/time -o $dir_base_perf$1-node-temp.txt --append -f "%E;" ./get-project-version-cov.sh $4 node $j
+                /usr/bin/time -o $dir_base_perf$1-edge-temp.txt --append -f "%E;" ./get-project-version-cov.sh $4 edge $j
+                /usr/bin/time -o $dir_base_perf$1-edge-pair-temp.txt --append -f "%E;" ./get-project-version-cov.sh $4 edge-pair $j
             done
-            tr -d '\n' < /PPgSI/$1-jacoco-temp.txt >> /PPgSI/$1-jacoco.txt
-            tr -d '\n' < /PPgSI/$1-node-temp.txt >> /PPgSI/$1-node.txt
-            tr -d '\n' < /PPgSI/$1-edge-temp.txt >> /PPgSI/$1-edge.txt
-            tr -d '\n' < /PPgSI/$1-edge-pair-temp.txt >> /PPgSI/$1-edge-pair.txt
-            echo "" >> /PPgSI/$1-jacoco.txt
-            echo "" >> /PPgSI/$1-node.txt
-            echo "" >> /PPgSI/$1-edge.txt
-            echo "" >> /PPgSI/$1-edge-pair.txt
+            tr -d '\n' < $dir_base_perf$1-jacoco-temp.txt >> /PPgSI/$1-jacoco.txt
+            tr -d '\n' < $dir_base_perf$1-node-temp.txt >> /PPgSI/$1-node.txt
+            tr -d '\n' < $dir_base_perf$1-edge-temp.txt >> /PPgSI/$1-edge.txt
+            tr -d '\n' < $dir_base_perf$1-edge-pair-temp.txt >> /PPgSI/$1-edge-pair.txt
+            echo "" >> $dir_base_perf$1-jacoco.txt
+            echo "" >> $dir_base_perf$1-node.txt
+            echo "" >> $dir_base_perf$1-edge.txt
+            echo "" >> $dir_base_perf$1-edge-pair.txt
         fi
     done
-    rm /PPgSI/$1-*-temp.txt
+    rm $dir_base_perf$1-*-temp.txt
 }
 main $1

@@ -42,4 +42,5 @@ RUN chmod +x *.sh
 
 WORKDIR /PPgSI
 RUN mkdir projects && \
-        mkdir reports
+        mkdir reports && \
+        mkdir perf-reports
