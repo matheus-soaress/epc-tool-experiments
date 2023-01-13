@@ -24,6 +24,10 @@ https://docs.docker.com/get-started/02_our_app/
 
 BA-control-flow quando instrumenta o Math, gera erro.
 
-~~Cli e Compress nas versões iniciais usa o JUnit 3 e nas últimas usa o JUnit 4.~~ [CORRIGIDO]
+~~Cli e Compress nas versões iniciais usam o JUnit 3 e nas últimas usam o JUnit 4.~~ [CORRIGIDO]
 
 Instrumentação da JaCoCo gera erro na execução do Compress.
+
+Erro nas últimas versões do Cli tanto para JaCoCo quanto para ba-control-flow.
+
+Mockito recebe erro em todas as versões quando a JaCoCo é utilizada e apenas para algumas versões no caso da ba-control-flow.
