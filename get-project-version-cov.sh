@@ -13,6 +13,7 @@ export dir_fonte_classpath="\/PPgSI\/projects\/"$1"\/"$3"b\/"$4
 main() 
 {
     echo $1"-"$3"b"
+    classe_junit="org.junit.runner.JUnitCore"
     case $classpath in
         *"junit-3"*)
             classe_junit="junit.textui.TestRunner"

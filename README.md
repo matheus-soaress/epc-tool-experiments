@@ -16,8 +16,12 @@ Em seguida inicie o container Docker usando o comando:
 
 Para reiniciar o container parado use o comando:
 
-    *docker container start -i epc-tool-container*
+    *docker container start epc-tool-container*
     
+Para acessar o console do container use o comando:
+
+    *docker exec -it epc-tool-container /bin/bash*
+
 https://docs.docker.com/get-started/02_our_app/
 
 ## Problemas atuais
