@@ -35,3 +35,5 @@ Instrumentação da JaCoCo gera erro na execução do Compress.
 Erro nas últimas versões do Cli tanto para JaCoCo quanto para ba-control-flow.
 
 Mockito recebe erro em todas as versões quando a JaCoCo é utilizada e apenas para algumas versões no caso da ba-control-flow.
+
+JaCoCo apresenta erro no report ao analisar o arquivo jacoco.exec. Suspeita de que o erro seja por analisar bibliotecas que não deveriam ser analisadas e que precisam ser removidas do classpath (pasta /target possui uma pasta /lib)
