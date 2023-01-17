@@ -8,8 +8,10 @@ export dir_destino_epc_tool=$dir_base/out-epc-tool
 export dir_xml_epc_tool=$dir_base"/reports/"$1
 export classes_teste="$(defects4j export -p tests.all -w $dir_base"/projects/"$1"/"$3"b" | tr '\n' ' ')"
 export classpath="$(defects4j export -p cp.test -w $dir_base"/projects/"$1"/"$3"b")"
-export dir_fonte=$dir_base"/projects/"$1"/"$3"b/"$4
-export dir_fonte_classpath="\/PPgSI\/projects\/"$1"\/"$3"b\/"$4
+export dir_fonte=$dir_base"/projects/"$1"/"$3"b/"
+export dir_fonte_src="$(defects4j export -p dir.bin.classes -w $dir_base"/projects/"$1"/"$3"b")"
+export dir_fonte_test="$(defects4j export -p dir.bin.tests -w $dir_base"/projects/"$1"/"$3"b")"
+export dir_fonte_classpath="\/PPgSI\/projects\/"$1"\/"$3"b\/"
 main() 
 {
     echo $1"-"$3"b"
@@ -41,7 +43,8 @@ get_cobertura_jacoco()
 {
     rm ./jacoco.exec
     rm -r $dir_destino_jacoco/*
-    java -jar $dir_jacoco instrument $dir_fonte --dest $dir_destino_jacoco
+    java -jar $dir_jacoco instrument $dir_fonte"$dir_fonte_src" --dest $dir_destino_jacoco
+    java -jar $dir_jacoco instrument $dir_fonte"$dir_fonte_test" --dest $dir_destino_jacoco
     dir_destino_jacoco_cp="\/PPgSI\/out-jacoco\/"
     classpath_jacoco=$(echo $classpath | sed "s,$1,$dir_destino_jacoco_cp,g")
     java -cp "$dir_jacoco_agent:$classpath_jacoco" $2 $classes_teste
@@ -52,7 +55,8 @@ get_cobertura_nos()
 {
     rm ./coverage.ser
     rm -r $dir_destino_epc_tool/*
-    java -jar $dir_epc_tool instrument -src $dir_fonte -dest $dir_destino_epc_tool
+    java -jar $dir_epc_tool instrument -src $dir_fonte"$dir_fonte_src" -dest $dir_destino_epc_tool
+    java -jar $dir_epc_tool instrument -src $dir_fonte"$dir_fonte_test" -dest $dir_destino_epc_tool
     dir_destino_epc_tool_cp="\/PPgSI\/out-epc-tool\/"
     classpath_epc_tool=$(echo $classpath | sed "s,$1,$dir_destino_epc_tool_cp,g")
     java -cp "$dir_epc_tool:$classpath_epc_tool" $2 $classes_teste
@@ -63,7 +67,8 @@ get_cobertura_arestas()
 {
     rm ./coverage.ser
     rm -r $dir_destino_epc_tool/*
-    java -jar $dir_epc_tool instrument -src $dir_fonte -dest $dir_destino_epc_tool -edges
+    java -jar $dir_epc_tool instrument -src $dir_fonte"$dir_fonte_src" -dest $dir_destino_epc_tool -edges
+    java -jar $dir_epc_tool instrument -src $dir_fonte"$dir_fonte_test" -dest $dir_destino_epc_tool -edges
     dir_destino_epc_tool_cp="\/PPgSI\/out-epc-tool\/"
     classpath_epc_tool=$(echo $classpath | sed "s,$1,$dir_destino_epc_tool_cp,g")
     java -cp "$dir_epc_tool:$classpath_epc_tool" $2 $classes_teste
@@ -74,7 +79,8 @@ get_cobertura_pares_arestas()
 {
     rm ./coverage.ser
     rm -r $dir_destino_epc_tool/*
-    java -jar $dir_epc_tool instrument -src $dir_fonte -dest $dir_destino_epc_tool -edge-pairs
+    java -jar $dir_epc_tool instrument -src $dir_fonte"$dir_fonte_src" -dest $dir_destino_epc_tool -edge-pairs
+    java -jar $dir_epc_tool instrument -src $dir_fonte"$dir_fonte_test" -dest $dir_destino_epc_tool -edge-pairs
     dir_destino_epc_tool_cp="\/PPgSI\/out-epc-tool\/"
     classpath_epc_tool=$(echo $classpath | sed "s,$1,$dir_destino_epc_tool_cp,g")
     java -cp "$dir_epc_tool:$classpath_epc_tool" $2 $classes_teste
