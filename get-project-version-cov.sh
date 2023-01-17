@@ -48,7 +48,7 @@ get_cobertura_jacoco()
     dir_destino_jacoco_cp="\/PPgSI\/out-jacoco\/"
     classpath_jacoco=$(echo $classpath | sed "s,$1,$dir_destino_jacoco_cp,g")
     java -cp "$dir_jacoco_agent:$classpath_jacoco" $2 $classes_teste
-    java -jar $dir_jacoco report ./jacoco.exec --classfiles $dir_fonte --xml $dir_xml_jacoco
+    java -jar $dir_jacoco report ./jacoco.exec --classfiles $dir_fonte"$dir_fonte_src" --classfiles $dir_fonte"$dir_fonte_test" --xml $dir_xml_jacoco
     rm ./jacoco.exec
 }
 get_cobertura_nos()
