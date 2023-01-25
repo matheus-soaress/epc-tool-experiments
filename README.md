@@ -22,18 +22,30 @@ Para acessar o console do container use o comando:
 
     *docker exec -it epc-tool-container /bin/bash*
 
+Em seguida, na pasta /PPgSI/epc-tool-experiments execute o seguinte comando para fazer o checkout de todas as versões do projeto desejado (o nome do projeto sempre inicia com letra minúscula):
+
+    *./checkout-defects4j.sh <nome-do-projeto>*
+
+Para executar os testes da JaCoCo e da ba-control-flow execute o seguinte comando (nome do projeto também no mesmo formato do passo anterior):
+
+    *./get-project-cov.sh <nome-do-projeto>*
+
 https://docs.docker.com/get-started/02_our_app/
 
 ## Problemas atuais
 
 BA-control-flow quando instrumenta o Math, gera erro.
 
-~~Cli e Compress nas versões iniciais usam o JUnit 3 e nas últimas usam o JUnit 4.~~ [CORRIGIDO]
-
 Instrumentação da JaCoCo gera erro na execução do Compress.
 
-Erro nas últimas versões do Cli tanto para JaCoCo quanto para ba-control-flow.
+Erro nas últimas versões do Cli tanto para JaCoCo quanto para ba-control-flow (Ocorre a partir da versão 35b, quando o JUnit3 é substituído pelo JUnit4).
 
-Mockito recebe erro em todas as versões quando a JaCoCo é utilizada e apenas para algumas versões no caso da ba-control-flow.
+Mockito recebe erro em algumas versões para as duas ferramentas.
 
-JaCoCo apresenta erro no report ao analisar o arquivo jacoco.exec. Suspeita de que o erro seja por analisar bibliotecas que não deveriam ser analisadas e que precisam ser removidas do classpath (pasta /target possui uma pasta /lib)
+JacksonDatabind com alguns casos de erro na ba-control-flow.
+
+~~Cli e Compress nas versões iniciais usam o JUnit 3 e nas últimas usam o JUnit 4.~~ [CORRIGIDO]
+
+~~Mockito recebe erro em todas as versões quando a JaCoCo é utilizada.~~ [CORRIGIDO]
+
+~~JaCoCo apresenta erro no report ao analisar o arquivo jacoco.exec no projeto JxPath. Suspeita de que o erro seja por analisar bibliotecas que não deveriam ser analisadas e que precisam ser removidas do classpath (pasta /target possui uma pasta /lib)~~ [CORRIGIDO]
