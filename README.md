@@ -38,7 +38,7 @@ BA-control-flow quando instrumenta o Math, gera erro.
 
 Instrumentação da JaCoCo gera erro na execução do Compress.
 
-Erro nas últimas versões do Cli tanto para JaCoCo quanto para ba-control-flow (Ocorre a partir da versão 35b, quando o JUnit3 é substituído pelo JUnit4).
+~~Erro nas últimas versões do Cli tanto para JaCoCo quanto para ba-control-flow (Ocorre a partir da versão 35b, quando o JUnit3 é substituído pelo JUnit4).~~ [CORRIGIDO]
 
 Mockito recebe erro em algumas versões para as duas ferramentas.
 

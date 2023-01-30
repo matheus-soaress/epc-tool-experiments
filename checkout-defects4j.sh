@@ -96,7 +96,10 @@ checkout_projeto()
         then 
             defects4j checkout -p $1 -v $i"b" -w /PPgSI/projects/$1/$i"b"
             defects4j compile -w /PPgSI/projects/$1/$i"b"
-            defects4j test -w /PPgSI/projects/$1/$i"b"
+            if ( [ $1 != Compress ] )
+            then
+                defects4j test -w /PPgSI/projects/$1/$i"b"
+            fi
         fi
     done
 }
