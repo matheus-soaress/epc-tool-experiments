@@ -26,7 +26,7 @@ main()
     esac
     if ( [ $1 == Compress ] )
         then
-            rm $dir_fonte""$dir_fonte_src"/"bla* $dir_fonte""$dir_fonte_src"/"*test*
+            rm $dir_fonte""$dir_fonte_test"/"bla* $dir_fonte""$dir_fonte_test"/"*test*
     fi
     case $2 in
         "jacoco")
