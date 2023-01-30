@@ -24,6 +24,10 @@ main()
             classe_junit="org.junit.runner.JUnitCore"
             ;;
     esac
+    if ( [ $1 == Compress ] )
+        then
+            rm $dir_fonte""$dir_fonte_src"/"bla* $dir_fonte""$dir_fonte_src"/"*test*
+    fi
     case $2 in
         "jacoco")
             get_cobertura_jacoco $dir_fonte_classpath $classe_junit
