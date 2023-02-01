@@ -24,9 +24,9 @@ main()
             classe_junit="org.junit.runner.JUnitCore"
             ;;
     esac
-    if ( [ $1 == Compress ] )
+    if [ $1="Compress" ]
         then
-            find $dir_fonte""$dir_fonte_test -mindepth 1 ! -regex '^$dir_fonte\"\"$dir_fonte_test\"/org\"' -delete
+            find $dir_fonte""$dir_fonte_test -maxdepth 1 ! -regex '^$dir_fonte""$dir_fonte_test"/org"' -delete
     fi
     case $2 in
         "jacoco")
