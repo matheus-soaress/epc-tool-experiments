@@ -26,10 +26,7 @@ main()
     esac
     if ( [ $1 == Compress ] )
         then
-            cd $dir_fonte""$dir_fonte_src
-            shopt -s extglob
-            rm -r !("org")
-            cd $dir_base"/epc-tool-experiments"
+            find $dir_fonte""$dir_fonte_test -mindepth 1 ! -regex '^$dir_fonte\"\"$dir_fonte_test\"/org\"' -delete
     fi
     case $2 in
         "jacoco")
