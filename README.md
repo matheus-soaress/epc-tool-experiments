@@ -30,7 +30,9 @@ Para executar os testes da JaCoCo e da ba-control-flow execute o seguinte comand
 
     *./get-project-cov.sh <nome-do-projeto>*
 
-https://docs.docker.com/get-started/02_our_app/
+Obs.: Caso queira testar a ba-dua original, há um script para isso, mas o processo de checkout do projeto e da ba-dua não é feito automaticamente. O arquivo get-badua-cov.sh obtém a cobertura da ba-dua original, porém atualmente está configurado para a ba-dua 0.7.1-SNAPSHOT e terá que ser modificado manualmente caso o checkout feito seja de outra versão.
+
+    ./get-badua-cov.sh <nome-do-projeto-conforme-defects4j> <apenas-numero-versao-bug>
 
 ## Problemas atuais
 
