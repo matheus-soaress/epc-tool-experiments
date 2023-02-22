@@ -8,31 +8,58 @@ Esse repositório contém os scripts utilizados para testar a ferramenta de cobe
 
 Na pasta dockerfile execute o seguinte comando para montar a imagem Docker usada para rodar os testes:
 
-    *docker build -t epc-tool-experiments .*
+````
+docker build -t epc-tool-experiments .
+````
 
 Em seguida inicie o container Docker usando o comando:
 
-    *docker container run -i --name epc-tool-container epc-tool-experiments*
+````
+docker container run -i --name epc-tool-container epc-tool-experiments
+````
 
 Para reiniciar o container parado use o comando:
 
-    *docker container start epc-tool-container*
-    
+````
+docker container start epc-tool-container
+````
+
 Para acessar o console do container use o comando:
 
-    *docker exec -it epc-tool-container /bin/bash*
+````
+docker exec -it epc-tool-container /bin/bash
+````
 
 Em seguida, na pasta /PPgSI/epc-tool-experiments execute o seguinte comando para fazer o checkout de todas as versões do projeto desejado (o nome do projeto sempre inicia com letra minúscula):
 
-    *./checkout-defects4j.sh <nome-do-projeto>*
+````
+./checkout-defects4j.sh <nome-do-projeto>
+````
 
 Para executar os testes da JaCoCo e da ba-control-flow execute o seguinte comando (nome do projeto também no mesmo formato do passo anterior):
 
-    *./get-project-cov.sh <nome-do-projeto>*
+````
+nohup ./get-project-cov.sh <nome-do-projeto> &
+````
+
+_Comando nohup (finalizando com "&") é necessário para execução em segundo plano, pois o processo no container docker pode ser "morto" caso o console seja desconectado._
 
 Obs.: Caso queira testar a ba-dua original, há um script para isso, mas o processo de checkout do projeto e da ba-dua não é feito automaticamente. O arquivo get-badua-cov.sh obtém a cobertura da ba-dua original, porém atualmente está configurado para a ba-dua 0.7.1-SNAPSHOT e terá que ser modificado manualmente caso o checkout feito seja de outra versão.
 
-    ./get-badua-cov.sh <nome-do-projeto-conforme-defects4j> <apenas-numero-versao-bug>
+````
+./get-badua-cov.sh <nome-do-projeto-conforme-defects4j> <apenas-numero-versao-bug>
+````
+
+## Resultados finais (provisório)
+
+Todos os programas com sucesso exceto:
+
+- Closure (versões com falha: 1b, 5b e 106b e algumas versões com suspeita de testes incompletos para ba-control-flow)
+- Collections (refazer 27b, pois a execução ficou em espera para a JaCoCo e afetou gravemente o tempo de uma das 10 execuções)
+- Compress (erro Jacoco 47b)
+- Jackson Databind (em teste)
+- Math (na fila para reteste)
+- Mockito (na fila para reteste)
 
 ## Problemas atuais
 
