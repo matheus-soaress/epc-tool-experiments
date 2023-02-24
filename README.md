@@ -57,9 +57,10 @@ Todos os programas com sucesso exceto:
 - Closure (versões com falha: 1b, 5b e 106b e algumas versões com suspeita de testes incompletos para ba-control-flow)
 - Collections (refazer 27b, pois a execução ficou em espera para a JaCoCo e afetou gravemente o tempo de uma das 10 execuções)
 - Compress (erro Jacoco 47b)
-- Jackson Databind (em teste)
+- Jackson Databind (erros na ba-control-flow em algumas versões)
 - Math (na fila para reteste)
 - Mockito (na fila para reteste)
+- Time (sugiro refazer teste)
 
 ## Problemas atuais
 
