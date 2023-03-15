@@ -24,6 +24,9 @@ main()
             classe_junit="org.junit.runner.JUnitCore"
             ;;
     esac
+    if [ $1 = "Csv" ]; then
+        classe_junit="junit.textui.TestRunner org.junit.runner.JUnitCore"
+    fi
     if [ $1 = "Compress" ]; then
         find $dir_fonte""$dir_fonte_test -maxdepth 1 ! -regex '^$dir_fonte""$dir_fonte_test"/org"' -delete
     fi
