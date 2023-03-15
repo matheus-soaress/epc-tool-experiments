@@ -25,7 +25,7 @@ main()
             ;;
     esac
     if [ $1 = "Csv" ]; then
-        classe_junit="junit.textui.TestRunner org.junit.runner.JUnitCore"
+        classe_junit="org.junit.runner.JUnitCore junit.textui.TestRunner"
     fi
     if [ $1 = "Compress" ]; then
         find $dir_fonte""$dir_fonte_test -maxdepth 1 ! -regex '^$dir_fonte""$dir_fonte_test"/org"' -delete
@@ -57,7 +57,7 @@ get_cobertura_jacoco()
     dir_test_original=$1""$dir_fonte_test
     classpath_jacoco=$(echo $classpath | sed "s,$dir_src_original,$dir_destino_jacoco_cp_src,g")
     classpath_jacoco=$(echo $classpath_jacoco | sed "s,$dir_test_original,$dir_destino_jacoco_cp_test,g")
-    java -cp "$dir_jacoco_agent:$classpath_jacoco" $2 $classes_teste
+    java -cp "$dir_jacoco_agent:$classpath_jacoco" $2 $3 $classes_teste
     java -jar $dir_jacoco report ./jacoco.exec --classfiles $dir_fonte"$dir_fonte_src" --classfiles $dir_fonte"$dir_fonte_test" --xml $dir_xml_jacoco
     rm ./jacoco.exec
 }
