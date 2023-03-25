@@ -114,17 +114,11 @@ get_cobertura()
     for j in $(seq $2 $3);
     do
         if ( [ $1 != "lang" ] || [ $j -ne 2 ] ) && ( [ $1 != "cli" ] || [ $j -ne 6 ] ) && ( [ $1 != "closure" ] || ( [ $j -ne 63 ] || [ $j -ne 93 ] ) && ( [ $1 != "time" ] || [ $j -ne 21 ] ) )
-        then 
-            echo "execucao versao "$j"b;" > "$dir_base_perf"$1-jacoco-temp.txt
-            echo "execucao versao "$j"b;" > "$dir_base_perf"$1-node-temp.txt
-            echo "execucao versao "$j"b;" > "$dir_base_perf"$1-edge-temp.txt
-            echo "execucao versao "$j"b;" > "$dir_base_perf"$1-edge-pair-temp.txt
-            
+        then
             ./get-project-version-cov.sh $4 jacoco $j
             ./get-project-version-cov.sh $4 node $j
             ./get-project-version-cov.sh $4 edge $j
             ./get-project-version-cov.sh $4 edge-pair $j
-            
         fi
     done
 }
