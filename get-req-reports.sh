@@ -1,6 +1,7 @@
 export dir_report=/PPgSI/reports/
 # Jacoco
-egrep '</package><counter.*/report>' -o "$dir_report"*-jacoco.xml | grep -E  '((^[^:]*)|("CLASS"[^"]*"[^\/]*"))' -o >> "$dir_report"class-cov-jacoco.txt
+egrep '</package><counter.*/report>' -p ; -o "$dir_report"*-jacoco.xml | grep -E  '((^[^:]*)|("CLASS"[^"]*"[^\/]*"))' -o > "$dir_report"class-cov-jacoco.txt
+grep -E '((\/[^\/-]*[-]{1})|([0-9b])*)' -p ; -o "$dir_report"class-cov-jacoco.txt > "$dir_report"class-cov-jacoco.txt
 egrep '</package><counter.*/report>' -o "$dir_report"*-jacoco.xml | grep -E  '((^[^:]*)|("METHOD"[^"]*"[^\/]*"))' -o >> "$dir_report"method-cov-jacoco.txt
 egrep '</package><counter.*/report>' -o "$dir_report"*-jacoco.xml | grep -E  '((^[^:]*)|("COMPLEXITY"[^"]*"[^\/]*"))' -o >> "$dir_report"complex-cov-jacoco.txt
 egrep '</package><counter.*/report>' -o "$dir_report"*-jacoco.xml | grep -E  '((^[^:]*)|("LINE"[^"]*"[^\/]*"))' -o >> "$dir_report"line-cov-jacoco.txt
