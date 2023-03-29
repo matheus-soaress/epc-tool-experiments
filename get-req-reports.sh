@@ -1,6 +1,6 @@
 export dir_report=/PPgSI/reports/
 # Jacoco
-egrep '</package><counter.*/report>' -p ; -o "$dir_report"*-jacoco.xml | grep -E  '((^[^:]*)|("CLASS"[^"]*"[^\/]*"))' -o | grep -E '((\/[^\/-]*(?=-))|([0-9b])*)' -o | sed -z "s/\n/,/g" | sed -z "s,/,\n,g" | grep -E '(.*[^,]\B[0-9])' -o > "$dir_report"class-cov-jacoco.txt
+egrep '</package><counter.*/report>' -o "$dir_report"*-jacoco.xml | grep -E  '((^[^:]*)|("CLASS"[^"]*"[^\/]*"))' -o | grep -E '((\/[^\/-]*(?=-))|([0-9b])*)' -o | sed -z "s/\n/,/g" | sed -z "s,/,\n,g" | grep -E '(.*[^,]\B[0-9])' -o > "$dir_report"class-cov-jacoco.txt
 egrep '</package><counter.*/report>' -o "$dir_report"*-jacoco.xml | grep -E  '((^[^:]*)|("METHOD"[^"]*"[^\/]*"))' -o | grep -E '((\/[^\/-]*(?=-))|([0-9b])*)' -o | sed -z "s/\n/,/g" | sed -z "s,/,\n,g" | grep -E '(.*[^,]\B[0-9])' -o > "$dir_report"method-cov-jacoco.txt
 egrep '</package><counter.*/report>' -o "$dir_report"*-jacoco.xml | grep -E  '((^[^:]*)|("COMPLEXITY"[^"]*"[^\/]*"))' -o | grep -E '((\/[^\/-]*(?=-))|([0-9b])*)' -o | sed -z "s/\n/,/g" | sed -z "s,/,\n,g" | grep -E '(.*[^,]\B[0-9])' -o > "$dir_report"complex-cov-jacoco.txt
 egrep '</package><counter.*/report>' -o "$dir_report"*-jacoco.xml | grep -E  '((^[^:]*)|("LINE"[^"]*"[^\/]*"))' -o | grep -E '((\/[^\/-]*(?=-))|([0-9b])*)' -o | sed -z "s/\n/,/g" | sed -z "s,/,\n,g" | grep -E '(.*[^,]\B[0-9])' -o > "$dir_report"line-cov-jacoco.txt
