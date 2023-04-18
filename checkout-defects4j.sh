@@ -1,92 +1,75 @@
 main() {
     case $1 in
-        "chart")
-            projeto="Chart"
+        "Chart")
             versao_inicial=1
             versao_final=26
             ;;
-        "cli")
-            projeto="Cli"
+        "Cli")
             versao_inicial=1
             versao_final=40
             ;;
-        "closure")
-            projeto="Closure"
+        "Closure")
             versao_inicial=1
             versao_final=176
             ;;
-        "codec")
-            projeto="Codec"
+        "Codec")
             versao_inicial=1
             versao_final=18
             ;;
-        "collections")
-            projeto="Collections"
+        "Collections")
             versao_inicial=25
             versao_final=28
             ;;
-        "compress")
-            projeto="Compress"
+        "Compress")
             versao_inicial=1
             versao_final=47
             ;;
-        "csv")
-            projeto="Csv"
+        "Csv")
             versao_inicial=1
             versao_final=16
             ;;
-        "gson")
-            projeto="Gson"
+        "Gson")
             versao_inicial=1
             versao_final=18
             ;;
-        "jackson-core")
-            projeto="JacksonCore"
+        "JacksonCore")
             versao_inicial=1
             versao_final=26
             ;;
-        "jackson-databind")
-            projeto="JacksonDatabind"
+        "JacksonDatabind")
             versao_inicial=1
             versao_final=112
             ;;
-        "jackson-xml")
-            projeto="JacksonXml"
+        "JacksonXml")
             versao_inicial=1
             versao_final=6
             ;;
-        "jsoup")
-            projeto="Jsoup"
+        "Jsoup")
             versao_inicial=1
             versao_final=93
             ;;
-        "jxPath")
-            projeto="JxPath"
+        "JxPath")
             versao_inicial=1
             versao_final=22
             ;;
-        "lang")
-            projeto="Lang"
+        "Lang")
             versao_inicial=1
             versao_final=65
             ;;
-        "math")
-            projeto="Math"
+        "Math")
             versao_inicial=1
             versao_final=106
             ;;
-        "mockito")
-            projeto="Mockito"
+        "Mockito")
             versao_inicial=1
             versao_final=38
             ;;
-        "time")
-            projeto="Time"
+        "Time")
             versao_inicial=1
             versao_final=27
             ;;
     esac
-    checkout_projeto $projeto $versao_inicial $versao_final
+    checkout_projeto $1 $versao_inicial $versao_final
 }
 checkout_projeto()
 {

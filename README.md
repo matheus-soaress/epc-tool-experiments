@@ -30,7 +30,7 @@ Para acessar o console do container use o comando:
 docker exec -it epc-tool-container /bin/bash
 ````
 
-Em seguida, na pasta /PPgSI/epc-tool-experiments execute o seguinte comando para fazer o checkout de todas as versões do projeto desejado (o nome do projeto sempre inicia com letra minúscula):
+Em seguida, na pasta /PPgSI/epc-tool-experiments execute o seguinte comando para fazer o checkout de todas as versões do projeto desejado:
 
 ````
 ./checkout-defects4j.sh <nome-do-projeto>
@@ -49,6 +49,26 @@ Obs.: Caso queira testar a ba-dua original, há um script para isso, mas o proce
 ````
 ./get-badua-cov.sh <nome-do-projeto-conforme-defects4j> <apenas-numero-versao-bug>
 ````
+
+## Projetos do Defects4j disponíveis
+
+- Chart 
+- Cli 
+- Closure 
+- Codec 
+- Collections 
+- Compress
+- Csv
+- Gson
+- JacksonCore
+- JacksonDatabind
+- JacksonXml
+- Jsoup
+- JxPath
+- Lang
+- Math
+- Mockito
+- Time
 
 ## Resultados finais (provisório)
 
