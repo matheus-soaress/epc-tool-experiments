@@ -36,7 +36,7 @@ Em seguida, na pasta /PPgSI/epc-tool-experiments execute o seguinte comando para
 ./checkout-defects4j.sh <nome-do-projeto>
 ````
 
-Para executar os testes da JaCoCo e da ba-control-flow execute o seguinte comando (nome do projeto também no mesmo formato do passo anterior):
+Para executar os testes da JaCoCo e da ba-control-flow execute o seguinte comando:
 
 ````
 nohup ./get-project-cov.sh <nome-do-projeto> &
@@ -47,7 +47,7 @@ _Comando nohup (finalizando com "&") é necessário para execução em segundo p
 Obs.: Caso queira testar a ba-dua original, há um script para isso, mas o processo de checkout do projeto e da ba-dua não é feito automaticamente. O arquivo get-badua-cov.sh obtém a cobertura da ba-dua original, porém atualmente está configurado para a ba-dua 0.7.1-SNAPSHOT e terá que ser modificado manualmente caso o checkout feito seja de outra versão.
 
 ````
-./get-badua-cov.sh <nome-do-projeto-conforme-defects4j> <apenas-numero-versao-bug>
+./get-badua-cov.sh <nome-do-projeto> <numero-da-versao-com-bug>
 ````
 
 ## Projetos do Defects4j disponíveis
@@ -70,30 +70,12 @@ Obs.: Caso queira testar a ba-dua original, há um script para isso, mas o proce
 - Mockito
 - Time
 
-## Resultados finais (provisório)
-
-Todos os programas com sucesso exceto:
-
-- Closure (versões com falha: 1b, 5b e 106b e algumas versões com suspeita de testes incompletos para ba-control-flow)
-- Compress (erro Jacoco 47b e ba-control-flow a partir da versão 36b)
-- Jackson Databind (erros na ba-control-flow em algumas versões)
-- Math (na fila para reteste)
-- Mockito (na fila para reteste)
-
 ## Problemas atuais
 
 BA-control-flow quando instrumenta o Math, gera erro.
 
 Instrumentação da JaCoCo gera erro na execução do Compress.
 
-~~Erro nas últimas versões do Cli tanto para JaCoCo quanto para ba-control-flow (Ocorre a partir da versão 35b, quando o JUnit3 é substituído pelo JUnit4).~~ [CORRIGIDO]
-
 Mockito recebe erro em algumas versões para as duas ferramentas.
 
 JacksonDatabind com alguns casos de erro na ba-control-flow.
-
-~~Cli e Compress nas versões iniciais usam o JUnit 3 e nas últimas usam o JUnit 4.~~ [CORRIGIDO]
-
-~~Mockito recebe erro em todas as versões quando a JaCoCo é utilizada.~~ [CORRIGIDO]
-
-~~JaCoCo apresenta erro no report ao analisar o arquivo jacoco.exec no projeto JxPath. Suspeita de que o erro seja por analisar bibliotecas que não deveriam ser analisadas e que precisam ser removidas do classpath (pasta /target possui uma pasta /lib)~~ [CORRIGIDO]

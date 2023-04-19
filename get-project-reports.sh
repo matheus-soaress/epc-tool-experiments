@@ -3,122 +3,105 @@ main()
 {
     rm "$dir_base_perf"$1-*.txt
     case $1 in
-        "chart")
+        "Chart")
             versao_inicial=1
             versao_final=26
-            projeto=Chart
             dir_fonte=""
             ;;
-        "cli")
+        "Cli")
             versao_inicial=1
             versao_final=40
-            projeto=Cli
             dir_fonte="target"
             ;;
-        "closure")
-            projeto="Closure"
+        "Closure")
             versao_inicial=1
             versao_final=176
             dir_fonte="build"
             ;;
-        "codec")
-            projeto="Codec"
+        "Codec")
             versao_inicial=1
             versao_final=18
             dir_fonte="target"
             ;;
-        "collections")
-            projeto="Collections"
+        "Collections")
             versao_inicial=25
             versao_final=28
             dir_fonte="target"
             ;;
-        "compress")
-            projeto="Compress"
+        "Compress")
             versao_inicial=1
             versao_final=47
             dir_fonte="target"
             ;;
-        "csv")
-            projeto="Csv"
+        "Csv")
             versao_inicial=1
             versao_final=16
             dir_fonte="target"
             ;;
-        "gson")
-            projeto="Gson"
+        "Gson")
             versao_inicial=1
             versao_final=18
             dir_fonte="target"
             ;;
-        "jackson-core")
-            projeto="JacksonCore"
+        "JacksonCore")
             versao_inicial=1
             versao_final=26
             dir_fonte="target"
             ;;
-        "jackson-databind")
-            projeto="JacksonDatabind"
+        "JacksonDatabind")
             versao_inicial=1
             versao_final=112
             dir_fonte="target"
             ;;
-        "jackson-xml")
-            projeto="JacksonXml"
+        "JacksonXml")
             versao_inicial=1
             versao_final=6
             dir_fonte="target"
             ;;
-        "jsoup")
-            projeto="Jsoup"
+        "Jsoup")
             versao_inicial=1
             versao_final=93
             dir_fonte="target"
             ;;
-        "jxPath")
-            projeto="JxPath"
+        "JxPath")
             versao_inicial=1
             versao_final=22
             dir_fonte="target"
             ;;
-        "lang")
-            projeto="Lang"
+        "Lang")
             versao_inicial=1
             versao_final=65
             dir_fonte="target"
             ;;
-        "math")
-            projeto="Math"
+        "Math")
             versao_inicial=1
             versao_final=106
             dir_fonte="target"
             ;;
-        "mockito")
-            projeto="Mockito"
+        "Mockito")
             versao_inicial=1
             versao_final=38
             dir_fonte="build"
             ;;
-        "time")
+        "Time")
             versao_inicial=1
             versao_final=27
-            projeto=Time
             dir_fonte="target"
             ;;
     esac
     
-    get_cobertura $1 $versao_inicial $versao_final $projeto
+    get_cobertura $1 $versao_inicial $versao_final
 }
 get_cobertura()
 {
     for j in $(seq $2 $3);
     do
-        if ( [ $1 != "lang" ] || [ $j -ne 2 ] ) && ( [ $1 != "cli" ] || [ $j -ne 6 ] ) && ( [ $1 != "closure" ] || ( [ $j -ne 63 ] || [ $j -ne 93 ] ) && ( [ $1 != "time" ] || [ $j -ne 21 ] ) )
+        if ( [ $1 != "Lang" ] || [ $j -ne 2 ] ) && ( [ $1 != "Cli" ] || [ $j -ne 6 ] ) && ( [ $1 != "Closure" ] || ( [ $j -ne 63 ] || [ $j -ne 93 ] ) && ( [ $1 != "Time" ] || [ $j -ne 21 ] ) )
         then
-            ./get-project-version-cov.sh $4 jacoco $j
-            ./get-project-version-cov.sh $4 node $j
-            ./get-project-version-cov.sh $4 edge $j
-            ./get-project-version-cov.sh $4 edge-pair $j
+            ./get-project-version-cov.sh $1 jacoco $j
+            ./get-project-version-cov.sh $1 node $j
+            ./get-project-version-cov.sh $1 edge $j
+            ./get-project-version-cov.sh $1 edge-pair $j
         fi
     done
 }
