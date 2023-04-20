@@ -1,7 +1,7 @@
 export dir_base_perf=/PPgSI/perf-reports/
 main()
 {
-    rm "$dir_base_perf"$1-*.txt
+    rm "$dir_base_perf"$1-*.csv
     case $1 in
         "Chart")
             versao_inicial=1
@@ -98,27 +98,27 @@ get_cobertura()
     do
         if ( [ $1 != "Lang" ] || [ $j -ne 2 ] ) && ( [ $1 != "Cli" ] || [ $j -ne 6 ] ) && ( [ $1 != "Closure" ] || ( [ $j -ne 63 ] || [ $j -ne 93 ] ) && ( [ $1 != "Time" ] || [ $j -ne 21 ] ) )
         then 
-            echo "execucao versao "$j"b;" > "$dir_base_perf"$1-jacoco-temp.txt
-            echo "execucao versao "$j"b;" > "$dir_base_perf"$1-node-temp.txt
-            echo "execucao versao "$j"b;" > "$dir_base_perf"$1-edge-temp.txt
-            echo "execucao versao "$j"b;" > "$dir_base_perf"$1-edge-pair-temp.txt
+            echo "execucao versao "$j"b;" > "$dir_base_perf"$1-jacoco-temp.csv
+            echo "execucao versao "$j"b;" > "$dir_base_perf"$1-node-temp.csv
+            echo "execucao versao "$j"b;" > "$dir_base_perf"$1-edge-temp.csv
+            echo "execucao versao "$j"b;" > "$dir_base_perf"$1-edge-pair-temp.csv
             for i in $(seq 1 10);
             do
-                /usr/bin/time -o "$dir_base_perf"$1-jacoco-temp.txt --append -f "%E;" ./get-project-version-cov.sh $1 jacoco $j
-                /usr/bin/time -o "$dir_base_perf"$1-node-temp.txt --append -f "%E;" ./get-project-version-cov.sh $1 node $j
-                /usr/bin/time -o "$dir_base_perf"$1-edge-temp.txt --append -f "%E;" ./get-project-version-cov.sh $1 edge $j
-                /usr/bin/time -o "$dir_base_perf"$1-edge-pair-temp.txt --append -f "%E;" ./get-project-version-cov.sh $1 edge-pair $j
+                /usr/bin/time -o "$dir_base_perf"$1-jacoco-temp.csv --append -f "%E;" ./get-project-version-cov.sh $1 jacoco $j
+                /usr/bin/time -o "$dir_base_perf"$1-node-temp.csv --append -f "%E;" ./get-project-version-cov.sh $1 node $j
+                /usr/bin/time -o "$dir_base_perf"$1-edge-temp.csv --append -f "%E;" ./get-project-version-cov.sh $1 edge $j
+                /usr/bin/time -o "$dir_base_perf"$1-edge-pair-temp.csv --append -f "%E;" ./get-project-version-cov.sh $1 edge-pair $j
             done
-            tr -d '\n' < "$dir_base_perf"$1-jacoco-temp.txt >> "$dir_base_perf"$1-jacoco.txt
-            tr -d '\n' < "$dir_base_perf"$1-node-temp.txt >> "$dir_base_perf"$1-node.txt
-            tr -d '\n' < "$dir_base_perf"$1-edge-temp.txt >> "$dir_base_perf"$1-edge.txt
-            tr -d '\n' < "$dir_base_perf"$1-edge-pair-temp.txt >> "$dir_base_perf"$1-edge-pair.txt
-            echo "" >> "$dir_base_perf"$1-jacoco.txt
-            echo "" >> "$dir_base_perf"$1-node.txt
-            echo "" >> "$dir_base_perf"$1-edge.txt
-            echo "" >> "$dir_base_perf"$1-edge-pair.txt
+            tr -d '\n' < "$dir_base_perf"$1-jacoco-temp.csv >> "$dir_base_perf"$1-jacoco.csv
+            tr -d '\n' < "$dir_base_perf"$1-node-temp.csv >> "$dir_base_perf"$1-node.csv
+            tr -d '\n' < "$dir_base_perf"$1-edge-temp.csv >> "$dir_base_perf"$1-edge.csv
+            tr -d '\n' < "$dir_base_perf"$1-edge-pair-temp.csv >> "$dir_base_perf"$1-edge-pair.csv
+            echo "" >> "$dir_base_perf"$1-jacoco.csv
+            echo "" >> "$dir_base_perf"$1-node.csv
+            echo "" >> "$dir_base_perf"$1-edge.csv
+            echo "" >> "$dir_base_perf"$1-edge-pair.csv
         fi
     done
-    rm "$dir_base_perf"$1-*-temp.txt
+    rm "$dir_base_perf"$1-*-temp.csv
 }
 main $1
