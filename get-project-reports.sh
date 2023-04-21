@@ -90,7 +90,7 @@ main()
             ;;
     esac
     
-    get_cobertura $1 $versao_inicial $versao_final
+    get_cobertura $1 $versao_inicial $versao_final $2
 }
 get_cobertura()
 {
@@ -98,11 +98,13 @@ get_cobertura()
     do
         if ( [ $1 != "Lang" ] || [ $j -ne 2 ] ) && ( [ $1 != "Cli" ] || [ $j -ne 6 ] ) && ( [ $1 != "Closure" ] || ( [ $j -ne 63 ] || [ $j -ne 93 ] ) && ( [ $1 != "Time" ] || [ $j -ne 21 ] ) )
         then
-            ./get-project-version-cov.sh $1 jacoco $j
-            ./get-project-version-cov.sh $1 node $j
-            ./get-project-version-cov.sh $1 edge $j
-            ./get-project-version-cov.sh $1 edge-pair $j
+            ./get-project-version-cov.sh $1 jacoco $j $4
+            ./get-project-version-cov.sh $1 node $j $4
+            ./get-project-version-cov.sh $1 edge $j $4
+            ./get-project-version-cov.sh $1 edge-pair $j $4
         fi
     done
 }
-main $1
+# $1 = Projeto/Programa
+# $2 = Exporta classpath ou não ("cp" para sim)
+main $1 $2

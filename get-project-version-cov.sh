@@ -32,7 +32,7 @@ main()
     fi
     case $2 in
         "jacoco")
-            get_cobertura_jacoco $dir_fonte_classpath $classe_junit
+            get_cobertura_jacoco $dir_fonte_classpath $classe_junit $4 $1 $3
             ;;
         "node")
             get_cobertura_nos $dir_fonte_classpath $classe_junit
@@ -58,6 +58,9 @@ get_cobertura_jacoco()
     classpath_jacoco=$(echo $classpath | sed "s,$dir_src_original,$dir_destino_jacoco_cp_src,g")
     classpath_jacoco=$(echo $classpath_jacoco | sed "s,$dir_test_original,$dir_destino_jacoco_cp_test,g")
     java -cp "$dir_jacoco_agent:$classpath_jacoco" $2 $3 $classes_teste
+    if [ $3 = "cp"]; then
+        echo $4"-"$5"b:"$classpath_jacoco >> /PPgSI/classpaths.txt
+    fi
     java -jar $dir_jacoco report ./jacoco.exec --classfiles $dir_fonte"$dir_fonte_src" --classfiles $dir_fonte"$dir_fonte_test" --xml $dir_xml_jacoco
     rm ./jacoco.exec
 }
@@ -109,4 +112,8 @@ get_cobertura_pares_arestas()
     java -jar $dir_epc_tool report -input ./coverage.ser -classes $dir_fonte -xml $dir_xml_epc_tool-edge-pair.xml -edge-pairs
     rm ./coverage.ser
 }
-main $1 $2 $3
+# $1 = Programa/Projeto
+# $2 = Ferramenta de cobertura
+# $3 = Versão do programa
+# $4 = Exporta classpath ou não ("cp" para sim)
+main $1 $2 $3 $4
