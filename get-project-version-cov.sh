@@ -57,7 +57,7 @@ get_cobertura_jacoco()
     dir_test_original=$1""$dir_fonte_test
     classpath_jacoco=$(echo $classpath | sed "s,$dir_src_original,$dir_destino_jacoco_cp_src,g")
     classpath_jacoco=$(echo $classpath_jacoco | sed "s,$dir_test_original,$dir_destino_jacoco_cp_test,g")
-    java -cp "$dir_jacoco_agent:$classpath_jacoco" $2 $3 $classes_teste
+    java -cp "$dir_jacoco_agent:$classpath_jacoco" $2 $classes_teste
     if [ $3 = "cp" ]; then
         echo $4"-"$5"b:"$classpath_jacoco >> /PPgSI/classpaths.txt
     fi
