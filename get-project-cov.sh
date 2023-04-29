@@ -91,9 +91,9 @@ main()
     esac
     if [ $2 = "--no-cov" ] 
     then
-        get_cobertura $1 $versao_inicial $versao_final
-    else
         get_tempo_sem_cobertura $1 $versao_inicial $versao_final
+    else
+        get_cobertura $1 $versao_inicial $versao_final
     fi
 }
 get_cobertura()
