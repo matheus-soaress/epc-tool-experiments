@@ -89,8 +89,12 @@ main()
             dir_fonte="target"
             ;;
     esac
-    
-    get_cobertura $1 $versao_inicial $versao_final 
+    if [ $2 = "--no-cov" ] 
+    then
+        get_cobertura $1 $versao_inicial $versao_final
+    else
+        get_tempo_sem_cobertura $1 $versao_inicial $versao_final
+    fi
 }
 get_cobertura()
 {
@@ -121,4 +125,21 @@ get_cobertura()
     done
     rm "$dir_base_perf"$1-*-temp.csv
 }
-main $1
+get_tempo_sem_cobertura()
+{
+    for j in $(seq $2 $3);
+    do
+        if ( [ $1 != "Lang" ] || [ $j -ne 2 ] ) && ( [ $1 != "Cli" ] || [ $j -ne 6 ] ) && ( [ $1 != "Closure" ] || ( [ $j -ne 63 ] || [ $j -ne 93 ] ) && ( [ $1 != "Time" ] || [ $j -ne 21 ] ) )
+        then
+            echo "execucao versao "$j"b;" > "$dir_base_perf"$1-original-temp.csv
+            for i in $(seq 1 10);
+            do
+                /usr/bin/time -o "$dir_base_perf"$1-original-temp.csv --append -f "%E;" ./get-project-version-cov.sh $1 original $j
+            done
+            tr -d '\n' < "$dir_base_perf"$1-original-temp.csv >> "$dir_base_perf"$1-original.csv
+            echo "" >> "$dir_base_perf"$1-original.csv
+        fi
+    done
+    rm "$dir_base_perf"$1-*-temp.csv
+}
+main $1 $2

@@ -43,6 +43,9 @@ main()
         "edge-pair")
             get_cobertura_pares_arestas $dir_fonte_classpath $classe_junit
             ;;
+        "original")
+            get_tempo_original $dir_fonte_classpath $classe_junit
+            ;;
     esac
 }
 get_cobertura_jacoco() 
@@ -111,6 +114,10 @@ get_cobertura_pares_arestas()
     java -cp "$dir_epc_tool:$classpath_epc_tool" $2 $classes_teste
     java -jar $dir_epc_tool report -input ./coverage.ser -classes $dir_fonte -xml $dir_xml_epc_tool-edge-pair.xml -edge-pairs
     rm ./coverage.ser
+}
+get_tempo_original()
+{
+    java -cp "$classpath" $2 $classes_teste
 }
 # $1 = Programa/Projeto
 # $2 = Ferramenta de cobertura
