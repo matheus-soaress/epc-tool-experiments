@@ -22,7 +22,7 @@ WORKDIR /PPgSI
 # install ba-control-flow
 RUN git clone https://github.com/matheus-soaress/edge-pair-cov-tool.git -b edge-cov-work
 WORKDIR /PPgSI/edge-pair-cov-tool
-RUN git checkout f30b1eaa4f5315b798cdbbeeab1fce72c5973ae7 && \
+RUN git checkout tags/v0.0.1 && \
         mvn clean install
 
 WORKDIR /PPgSI
