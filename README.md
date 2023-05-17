@@ -92,14 +92,6 @@ Os relatórios de cobertura podem ser obtidos executando o script de coleta de d
 ./get-project-reports.sh <nome-do-projeto>
 ````
 
-## Executando a ba-dua original
-
-Obs.: Caso queira testar a ba-dua original, há um script para isso, mas o processo de checkout do projeto e da ba-dua não é feito automaticamente. O arquivo get-badua-cov.sh obtém a cobertura da ba-dua original, porém atualmente está configurado para a ba-dua 0.7.1-SNAPSHOT e terá que ser modificado manualmente caso o checkout feito seja de outra versão.
-
-````
-./get-badua-cov.sh <nome-do-projeto> <numero-da-versao-com-bug>
-````
-
 ## Projetos do Defects4j disponíveis
 
 - Chart 
@@ -119,7 +111,3 @@ Obs.: Caso queira testar a ba-dua original, há um script para isso, mas o proce
 - Math
 - Mockito
 - Time
-
-## Problemas atuais
-
-- Suspeita de que biblioteca powermock gere erro na obtenção de cobertura de código pela BA-CF dos projetos que a usam.
